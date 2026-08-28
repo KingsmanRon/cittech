@@ -51,13 +51,13 @@ function ContactPage() {
               <ul className="mt-4 space-y-4 text-sm text-muted">
                 <li className="flex gap-3">
                   <Phone className="mt-0.5 size-4 text-accent" />
-                  <a href={company.phoneHref} className="hover:text-fg">
+                  <a href={company.phoneHref} className="tap hover:text-fg">
                     {company.phone}
                   </a>
                 </li>
                 <li className="flex gap-3">
                   <Mail className="mt-0.5 size-4 text-accent" />
-                  <a href={company.emailHref} className="hover:text-fg">
+                  <a href={company.emailHref} className="tap hover:text-fg">
                     {company.email}
                   </a>
                 </li>
@@ -82,7 +82,7 @@ function ContactPage() {
               />
               <a
                 href={`https://www.openstreetmap.org/?mlat=-25.805&mlon=28.281#map=15/-25.805/28.281`}
-                className="block bg-elevated px-4 py-3 text-xs text-muted hover:text-fg"
+                className="flex min-h-11 items-center bg-elevated px-4 py-3 text-xs text-muted hover:text-fg"
                 target="_blank"
                 rel="noreferrer"
               >

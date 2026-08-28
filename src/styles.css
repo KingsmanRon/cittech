@@ -164,6 +164,19 @@
     transform: scale(0.97);
   }
 
+  /*
+   * Inline text links sit at their line height, ~16-20px, well under the 44px
+   * a finger needs. Expand the hit area on touch pointers only, so the desktop
+   * layout is untouched.
+   */
+  @media (pointer: coarse) {
+    .tap {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+    }
+  }
+
   .visually-hidden {
     position: absolute;
     width: 1px;

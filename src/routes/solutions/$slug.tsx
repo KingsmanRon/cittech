@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 import { SiteShell } from "@/components/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/responsive-image";
 import { getSolution, solutions } from "@/lib/content";
 
 export const Route = createFileRoute("/solutions/$slug")({
@@ -32,12 +33,12 @@ function SolutionDetail() {
     <SiteShell>
       <main>
         <section className="relative isolate overflow-hidden">
-          <img
+          <ResponsiveImage
             src={solution.image}
             alt=""
             className="absolute inset-0 size-full object-cover"
-            fetchPriority="high"
-            decoding="async"
+            sizes="100vw"
+            priority
           />
           <div className="absolute inset-0 bg-bg/55" />
           <div
@@ -47,7 +48,7 @@ function SolutionDetail() {
           <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-[calc(5rem+var(--header-h))] sm:px-6">
             <Link
               to="/solutions"
-              className="inline-flex items-center gap-2 text-sm text-muted hover:text-fg"
+              className="tap inline-flex items-center gap-2 text-sm text-muted hover:text-fg"
             >
               <ArrowLeft className="size-4" />
               All solutions
@@ -95,7 +96,7 @@ function SolutionDetail() {
               href={solution.brochure}
               target="_blank"
               rel="noreferrer"
-              className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+              className="tap mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
             >
               Download the {solution.partner} brochure
               <ArrowUpRight className="size-4" />
@@ -130,12 +131,11 @@ function SolutionDetail() {
                   params={{ slug: item.slug }}
                   className="overflow-hidden rounded-xl border border-line bg-bg"
                 >
-                  <img
+                  <ResponsiveImage
                     src={item.image}
                     alt=""
                     className="aspect-video w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    sizes="(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
                   />
                   <div className="p-4">
                     <p className="font-display font-semibold text-fg">

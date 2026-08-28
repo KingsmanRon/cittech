@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { solutions } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/responsive-image";
 
 export function KineticLines({
   lines,
@@ -118,7 +119,7 @@ export function OperatingPicture() {
       </div>
       <div className="relative min-h-96 lg:min-h-dvh">
         {solutions.map((item) => (
-          <img
+          <ResponsiveImage
             key={item.slug}
             src={item.image}
             alt=""
@@ -126,8 +127,7 @@ export function OperatingPicture() {
               "absolute inset-0 size-full object-cover transition-opacity duration-200 ease-out",
               item.slug === active ? "opacity-100" : "opacity-0",
             )}
-            loading="lazy"
-            decoding="async"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         ))}
       </div>
@@ -145,7 +145,7 @@ export function SolutionRail() {
           </h2>
           <Link
             to="/solutions"
-            className="text-sm font-medium text-muted transition-colors duration-100 hover:text-fg"
+            className="tap text-sm font-medium text-muted transition-colors duration-100 hover:text-fg"
           >
             All solutions
           </Link>
@@ -161,12 +161,15 @@ export function SolutionRail() {
                 i < 3 ? "lg:col-span-2" : "lg:col-span-3",
               )}
             >
-              <img
+              <ResponsiveImage
                 src={item.image}
                 alt=""
                 className="aspect-video w-full object-cover"
-                loading="lazy"
-                decoding="async"
+                sizes={
+                  i < 3
+                    ? "(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
+                    : "(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw"
+                }
               />
               <div className="border-t border-line p-4">
                 <p className="text-xs tracking-label text-muted">{item.partner}</p>

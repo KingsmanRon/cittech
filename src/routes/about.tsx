@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/responsive-image";
 import { company, industries, partnerBenefits, services } from "@/lib/content";
 
 export const Route = createFileRoute("/about")({
@@ -16,12 +17,12 @@ function AboutPage() {
     <SiteShell>
       <main>
         <section className="relative isolate overflow-hidden">
-          <img
+          <ResponsiveImage
             src="/images/office.jpg"
             alt="Pretoria office park at dusk"
             className="absolute inset-0 size-full object-cover"
-            fetchPriority="high"
-            decoding="async"
+            sizes="100vw"
+            priority
           />
           <div className="absolute inset-0 bg-bg/55" />
           <div

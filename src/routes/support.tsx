@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/contact-form";
 import { SiteShell } from "@/components/site-shell";
 import { Badge } from "@/components/ui/badge";
+import { ResponsiveImage } from "@/components/responsive-image";
 import { faqs, partnerBenefits, services } from "@/lib/content";
 
 export const Route = createFileRoute("/support")({
@@ -16,12 +17,12 @@ function SupportPage() {
     <SiteShell>
       <main>
         <section className="relative isolate overflow-hidden">
-          <img
+          <ResponsiveImage
             src="/images/training.jpg"
             alt="Technical training room"
             className="absolute inset-0 size-full object-cover"
-            fetchPriority="high"
-            decoding="async"
+            sizes="100vw"
+            priority
           />
           <div className="absolute inset-0 bg-bg/55" />
           <div

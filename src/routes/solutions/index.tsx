@@ -4,6 +4,7 @@ import { SiteShell } from "@/components/site-shell";
 import { SolutionFinder } from "@/components/solution-finder";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/responsive-image";
 import { solutions } from "@/lib/content";
 
 export const Route = createFileRoute("/solutions/")({
@@ -37,12 +38,11 @@ function SolutionsPage() {
                 className="grid overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-2"
               >
                 <div className={i % 2 === 1 ? "md:order-2" : ""}>
-                  <img
+                  <ResponsiveImage
                     src={item.image}
                     alt=""
                     className="aspect-video size-full object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    sizes="(min-width: 768px) 576px, 100vw"
                   />
                 </div>
                 <div className="flex flex-col justify-center p-6 sm:p-10">

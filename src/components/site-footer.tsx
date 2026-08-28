@@ -22,7 +22,7 @@ export function SiteFooter() {
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className="text-muted transition-colors duration-150 hover:text-fg"
+                  className="tap text-muted transition-colors duration-150 hover:text-fg"
                 >
                   {item.label}
                 </Link>
@@ -41,7 +41,7 @@ export function SiteFooter() {
                 <Link
                   to="/solutions/$slug"
                   params={{ slug: item.slug }}
-                  className="text-muted transition-colors duration-150 hover:text-fg"
+                  className="tap text-muted transition-colors duration-150 hover:text-fg"
                 >
                   {item.title}
                 </Link>
@@ -65,13 +65,13 @@ export function SiteFooter() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="size-4 shrink-0 text-accent" />
-              <a href={company.phoneHref} className="hover:text-fg">
+              <a href={company.phoneHref} className="tap hover:text-fg">
                 {company.phone}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="size-4 shrink-0 text-accent" />
-              <a href={company.emailHref} className="hover:text-fg">
+              <a href={company.emailHref} className="tap hover:text-fg">
                 {company.email}
               </a>
             </li>

@@ -9,6 +9,7 @@ import {
 import { SiteShell } from "@/components/site-shell";
 import { SolutionFinder } from "@/components/solution-finder";
 import { Button } from "@/components/ui/button";
+import { ResponsiveImage } from "@/components/responsive-image";
 import { company, services } from "@/lib/content";
 
 export const Route = createFileRoute("/")({ component: Home });
@@ -18,12 +19,12 @@ function Home() {
     <SiteShell>
       <main>
         <section className="relative isolate min-h-[calc(100dvh+var(--header-h))] overflow-hidden">
-          <img
+          <ResponsiveImage
             src="/images/hero.jpg"
             alt="Dusk skyline over a South African city"
             className="absolute inset-0 size-full object-cover"
-            fetchPriority="high"
-            decoding="async"
+            sizes="100vw"
+            priority
           />
           <div className="absolute inset-0 bg-bg/30" />
           <div
