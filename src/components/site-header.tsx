@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Drawer } from "vaul";
@@ -9,15 +9,32 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const scrolled = useScrolledPast(8);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="material sticky top-0 z-40">
+    <header className="sticky top-0 z-40">
+      {/*
+        Glass only once there is content behind it to blur. At the top of the
+        page the bar stays clear so the hero runs edge to edge, and the material
+        fades in as content slides under it rather than sitting on a permanent
+        divider.
+      */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-full h-3 bg-linear-to-b from-bg/40 to-transparent"
+        className={cn(
+          "material absolute inset-0 transition-opacity duration-300 ease-out",
+          scrolled ? "opacity-100" : "opacity-0",
+        )}
       />
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
+      <div
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute inset-x-0 top-full h-4 bg-linear-to-b from-bg/50 to-transparent transition-opacity duration-300 ease-out",
+          scrolled ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <div className="relative mx-auto flex h-[var(--header-h)] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
           className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -125,4 +142,18 @@ export function SiteHeader() {
       </div>
     </header>
   );
+}
+
+/** Whether the page has scrolled past `offset`, for scroll-edge chrome. */
+function useScrolledPast(offset: number) {
+  const [past, setPast] = useState(false);
+
+  useEffect(() => {
+    const read = () => setPast(window.scrollY > offset);
+    read();
+    window.addEventListener("scroll", read, { passive: true });
+    return () => window.removeEventListener("scroll", read);
+  }, [offset]);
+
+  return past;
 }

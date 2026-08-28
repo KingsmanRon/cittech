@@ -18,7 +18,7 @@ function ContactPage() {
   return (
     <SiteShell>
       <main>
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 pb-16 pt-[calc(4rem+var(--header-h))] sm:px-6">
           <Badge>Contact</Badge>
           <h1 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
             Brief Pretoria. We’ll come back with a design conversation.

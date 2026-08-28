@@ -30,6 +30,28 @@
   --leading-body: 1.6;
   --tracking-display: -0.022em;
   --tracking-label: 0.01em;
+
+  /*
+   * Tracking is size-specific, never one value for every size: letters read
+   * too far apart as type grows, and too tight as it shrinks. Attaching it to
+   * the size token means every `text-*` gets the right value automatically.
+   * Leading moves the other way, tightening as the type gets larger.
+   */
+  --text-xs--letter-spacing: 0.01em;
+  --text-sm--letter-spacing: 0.006em;
+  --text-base--letter-spacing: 0em;
+  --text-lg--letter-spacing: -0.006em;
+  --text-xl--letter-spacing: -0.011em;
+  --text-2xl--letter-spacing: -0.015em;
+  --text-3xl--letter-spacing: -0.019em;
+  --text-4xl--letter-spacing: -0.022em;
+  --text-5xl--letter-spacing: -0.025em;
+
+  --text-2xl--line-height: 1.24;
+  --text-3xl--line-height: 1.16;
+  --text-4xl--line-height: 1.1;
+  --text-5xl--line-height: 1.05;
+
   --max-width-measure: 62ch;
   --ease-out-quart: cubic-bezier(0.23, 1, 0.32, 1);
 
@@ -38,7 +60,20 @@
 }
 
 @layer base {
+  :root {
+    /* The header floats over the page; sections offset by this to sit under it. */
+    --header-h: 3.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    :root {
+      --header-h: 4rem;
+    }
+  }
+
   html {
+    /* Anchor targets clear the floating header instead of landing behind it. */
+    scroll-padding-top: var(--header-h);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-optical-sizing: auto;
@@ -89,6 +124,17 @@
 
   main img.mark {
     outline: none;
+  }
+
+  /*
+   * The UA's default focus ring paints near-black, which is invisible on this
+   * palette, so keyboard focus has to be drawn explicitly. Doing it here means
+   * every control is reachable by default; components that want a different
+   * treatment opt out with `focus-visible:outline-none` and draw their own.
+   */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
   }
 
   ::selection {

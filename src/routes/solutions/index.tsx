@@ -17,7 +17,7 @@ function SolutionsPage() {
   return (
     <SiteShell>
       <main>
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 pb-16 pt-[calc(4rem+var(--header-h))] sm:px-6">
           <Badge>Product & solutions</Badge>
           <h1 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
             Customised security, specified as a system.
@@ -41,6 +41,8 @@ function SolutionsPage() {
                     src={item.image}
                     alt=""
                     className="aspect-video size-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="flex flex-col justify-center p-6 sm:p-10">

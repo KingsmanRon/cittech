@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { solutions } from "@/lib/content";
@@ -34,6 +34,33 @@ export function OperatingPicture() {
   const wall = solutions.find((s) => s.slug === "vms-psim") ?? solutions[0];
   const [active, setActive] = useState(wall.slug);
   const current = solutions.find((s) => s.slug === active) ?? wall;
+  const group = useRef<HTMLDivElement>(null);
+
+  // A radiogroup is driven by arrow keys, not Tab: selection and focus move
+  // together, and only the checked option stays in the tab order.
+  const moveTo = (index: number) => {
+    const next = (index + solutions.length) % solutions.length;
+    setActive(solutions[next].slug);
+    group.current
+      ?.querySelectorAll<HTMLButtonElement>('[role="radio"]')
+      [next]?.focus();
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent, index: number) => {
+    const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[
+      event.key
+    ];
+    if (step) {
+      event.preventDefault();
+      moveTo(index + step);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      moveTo(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      moveTo(solutions.length - 1);
+    }
+  };
 
   return (
     <section className="bg-bg lg:grid lg:grid-cols-2">
@@ -47,11 +74,12 @@ export function OperatingPicture() {
           specifies for metros, estates and multi-site enterprises.
         </p>
         <div
+          ref={group}
           role="radiogroup"
           aria-label="Security layers"
           className="mt-10 divide-y divide-line border-y border-line"
         >
-          {solutions.map((item) => {
+          {solutions.map((item, i) => {
             const on = item.slug === active;
             return (
               <button
@@ -59,7 +87,9 @@ export function OperatingPicture() {
                 type="button"
                 role="radio"
                 aria-checked={on}
+                tabIndex={on ? 0 : -1}
                 onClick={() => setActive(item.slug)}
+                onKeyDown={(e) => onKeyDown(e, i)}
                 onPointerEnter={(e) => {
                   if (e.pointerType === "mouse") setActive(item.slug);
                 }}
@@ -96,6 +126,8 @@ export function OperatingPicture() {
               "absolute inset-0 size-full object-cover transition-opacity duration-200 ease-out",
               item.slug === active ? "opacity-100" : "opacity-0",
             )}
+            loading="lazy"
+            decoding="async"
           />
         ))}
       </div>
@@ -133,6 +165,8 @@ export function SolutionRail() {
                 src={item.image}
                 alt=""
                 className="aspect-video w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="border-t border-line p-4">
                 <p className="text-xs tracking-label text-muted">{item.partner}</p>

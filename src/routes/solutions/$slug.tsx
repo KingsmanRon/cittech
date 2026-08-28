@@ -36,9 +36,15 @@ function SolutionDetail() {
             src={solution.image}
             alt=""
             className="absolute inset-0 size-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-bg/55" />
-          <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+5rem)] bg-linear-to-b from-bg/85 to-transparent"
+          />
+          <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-[calc(5rem+var(--header-h))] sm:px-6">
             <Link
               to="/solutions"
               className="inline-flex items-center gap-2 text-sm text-muted hover:text-fg"
@@ -128,6 +134,8 @@ function SolutionDetail() {
                     src={item.image}
                     alt=""
                     className="aspect-video w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="p-4">
                     <p className="font-display font-semibold text-fg">

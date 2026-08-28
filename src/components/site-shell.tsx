@@ -6,7 +6,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div vaul-drawer-wrapper="" className="flex min-h-dvh flex-col bg-bg text-fg">
       <SiteHeader />
-      <div className="flex-1">{children}</div>
+      <div className="-mt-[var(--header-h)] flex-1">{children}</div>
       <SiteFooter />
     </div>
   );

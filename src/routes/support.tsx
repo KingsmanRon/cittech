@@ -20,9 +20,15 @@ function SupportPage() {
             src="/images/training.jpg"
             alt="Technical training room"
             className="absolute inset-0 size-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-bg/55" />
-          <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+5rem)] bg-linear-to-b from-bg/85 to-transparent"
+          />
+          <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-[calc(6rem+var(--header-h))] sm:px-6">
             <Badge>Support</Badge>
             <h1 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
               Training, warranty and a channel that can actually deploy it.

@@ -20,9 +20,15 @@ function AboutPage() {
             src="/images/office.jpg"
             alt="Pretoria office park at dusk"
             className="absolute inset-0 size-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-bg/55" />
-          <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+5rem)] bg-linear-to-b from-bg/85 to-transparent"
+          />
+          <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-[calc(6rem+var(--header-h))] sm:px-6">
             <Badge>About CIT</Badge>
             <h1 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
               Recognised leadership in electronic security, from Pretoria to the

@@ -17,15 +17,21 @@ function Home() {
   return (
     <SiteShell>
       <main>
-        <section className="relative isolate min-h-dvh overflow-hidden">
+        <section className="relative isolate min-h-[calc(100dvh+var(--header-h))] overflow-hidden">
           <img
             src="/images/hero.jpg"
             alt="Dusk skyline over a South African city"
             className="absolute inset-0 size-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-bg/30" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-[calc(var(--header-h)+5rem)] bg-linear-to-b from-bg/85 to-transparent"
+          />
           <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/45 to-transparent" />
-          <div className="relative mx-auto flex min-h-dvh max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6">
+          <div className="relative mx-auto flex min-h-[calc(100dvh+var(--header-h))] max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6">
             <KineticLines
               lines={["Integrated security.", "One picture."]}
               className="max-w-3xl font-display text-4xl font-semibold text-fg sm:text-5xl"
