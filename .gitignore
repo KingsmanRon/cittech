@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+.node_modules.lock
+
+# build output
+dist/
+.output/
+.vercel/
+.tanstack/
+.nitro/
+
+# grok workspace tooling / caches
+.grok/
+artifacts/
+attachments/
+screenshots/
+
+# logs & env
+*.log
+.env
+.env.*
+!.env.example
+
+# os
+.DS_Store
+Thumbs.db
