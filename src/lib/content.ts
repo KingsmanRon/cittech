@@ -69,22 +69,50 @@ export const industries = [
   },
 ];
 
-export const partnerLogos = [
-  { name: "Axxonsoft", image: "/images/range/axxonsoft.png", role: "Video management" },
-  { name: "Hitron", image: "/images/range/hitron.png", role: "Surveillance" },
-  { name: "Satel", image: "/images/range/satel.png", role: "Intrusion" },
-  { name: "TBS", image: "/images/range/tbs.png", role: "Access and biometrics" },
-  { name: "Holomatrix", image: "/images/range/holomatrix.png", role: "Technology partner" },
-];
+export type Partner = {
+  name: string;
+  role: string;
+  /**
+   * Monochrome knockout mark, cropped to its ink and optically balanced
+   * against the other marks. The `.png` without the suffix is the dark-ink
+   * master, kept for light backgrounds.
+   */
+  mark?: string;
+  /** Slug of the solution this line is detailed on, when there is one. */
+  solution?: string;
+};
 
-export const partners = [
-  { name: "Hitron", role: "Surveillance" },
-  { name: "TBS", role: "Access and time attendance" },
-  { name: "Satel", role: "Intrusion" },
-  { name: "AN4", role: "VMS and PSIM" },
-  { name: "Veridot", role: "Asset tagging" },
-  { name: "Axxonsoft", role: "Video management" },
-  { name: "Holomatrix", role: "Technology partner" },
+export const partners: Partner[] = [
+  {
+    name: "Hitron",
+    role: "Surveillance",
+    mark: "/images/range/hitron-light.png",
+    solution: "surveillance",
+  },
+  {
+    name: "TBS",
+    role: "Access and biometrics",
+    mark: "/images/range/tbs-light.png",
+    solution: "access-control",
+  },
+  {
+    name: "Satel",
+    role: "Intrusion",
+    mark: "/images/range/satel-light.png",
+    solution: "intrusion",
+  },
+  { name: "AN4", role: "VMS and PSIM", solution: "vms-psim" },
+  { name: "Veridot", role: "Asset tagging", solution: "asset-tagging" },
+  {
+    name: "Axxonsoft",
+    role: "Video management",
+    mark: "/images/range/axxonsoft-light.png",
+  },
+  {
+    name: "Holomatrix",
+    role: "Technology partner",
+    mark: "/images/range/holomatrix-light.png",
+  },
 ];
 
 export type Solution = {
