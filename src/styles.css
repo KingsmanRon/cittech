@@ -165,6 +165,43 @@
   }
 
   /*
+   * Infinite logo rail. Identical tracks sit end to end and each shifts by
+   * exactly its own width plus one gap, so the loop closes with no seam. Three
+   * tracks keep the right edge covered on wide displays, and the mask fades the
+   * cards out at both ends instead of slicing them.
+   */
+  .marquee {
+    --marquee-gap: 0.75rem;
+    --marquee-duration: 44s;
+    /* Proportional, so the fade never eats a third of a phone screen. */
+    --marquee-fade: clamp(1rem, 5vw, 4rem);
+    display: flex;
+    gap: var(--marquee-gap);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 var(--marquee-fade),
+      #000 calc(100% - var(--marquee-fade)),
+      transparent
+    );
+    mask-image: linear-gradient(90deg, transparent, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--marquee-gap);
+    animation: marquee-slide var(--marquee-duration) linear infinite;
+  }
+
+  /* Hold still while someone is reading a card or tabbing through one. */
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /*
    * Inline text links sit at their line height, ~16-20px, well under the 44px
    * a finger needs. Expand the hit area on touch pointers only, so the desktop
    * layout is untouched.
@@ -194,6 +231,12 @@
   }
 }
 
+@keyframes marquee-slide {
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap)));
+  }
+}
+
 @keyframes sc-rise {
   from {
     opacity: 0;
@@ -216,6 +259,23 @@
 
   .sc-kinetic {
     animation: none;
+  }
+
+  /* A perpetually moving rail is exactly what this setting is for: stop it and
+     hand back a rail the reader scrolls themselves, with the clones dropped so
+     nothing repeats. */
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .marquee-clone {
+    display: none;
   }
 
   [data-vaul-drawer] {
