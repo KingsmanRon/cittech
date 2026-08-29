@@ -3,7 +3,13 @@ import { SiteShell } from "@/components/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ResponsiveImage } from "@/components/responsive-image";
-import { company, industries, partnerBenefits, services } from "@/lib/content";
+import {
+  bbee,
+  company,
+  industries,
+  partnerBenefits,
+  services,
+} from "@/lib/content";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -70,40 +76,59 @@ function AboutPage() {
         </section>
 
         <section className="border-y border-line bg-surface">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-widest text-muted">
-                Transformation
-              </p>
-              <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-fg">
-                {company.bee}. Skills as operating practice.
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted">
-                Community Investment Technology is committed to empowerment and
-                transformation across the organisation. We invest in skills
-                development because it is how future leaders, and future
-                deployments, are built. CIT is a member of the {company.group},
-                a 100% black-owned, women-led investment group.
-              </p>
-            </div>
-            <ul className="grid gap-4 sm:grid-cols-2">
-              {[
-                { k: "Level 2", v: "B-BBEE contributor" },
-                { k: "CIH", v: "Group member, Pretoria" },
-                { k: "Skills", v: "Channel and operator training" },
-                { k: "Africa", v: "Specified for this market" },
-              ].map((item) => (
-                <li
-                  key={item.k}
-                  className="rounded-xl border border-line bg-bg p-5"
-                >
-                  <p className="font-display text-lg font-semibold text-fg">
-                    {item.k}
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted">
+              Transformation
+            </p>
+            <h2 className="mt-3 max-w-measure font-display text-3xl font-semibold tracking-tight text-fg">
+              {company.bee}. Skills as operating practice.
+            </h2>
+            <p className="mt-4 max-w-measure text-base leading-relaxed text-muted">
+              Community Investment Technology is committed to empowerment and
+              transformation across the organisation. We invest in skills
+              development because it is how future leaders, and future
+              deployments, are built.
+            </p>
+            <div className="mt-10 rounded-xl border border-line bg-bg p-6 sm:p-8">
+              <div className="flex flex-wrap gap-x-12 gap-y-6 border-b border-line pb-6">
+                <div>
+                  <p className="font-display text-4xl font-semibold text-fg">
+                    {bbee.level}
                   </p>
-                  <p className="mt-1 text-sm text-muted">{item.v}</p>
-                </li>
-              ))}
-            </ul>
+                  <p className="mt-1 text-sm text-muted">{bbee.status}</p>
+                </div>
+                <div>
+                  <p className="font-display text-4xl font-semibold text-accent">
+                    {bbee.recognition}
+                  </p>
+                  <p className="mt-1 text-sm text-muted">{bbee.recognitionOf}</p>
+                </div>
+              </div>
+              <dl className="mt-6 grid gap-x-12 gap-y-6 text-sm sm:grid-cols-2">
+                {[
+                  { t: "What it is worth to you", d: bbee.forBuyers },
+                  { t: "Ownership", d: bbee.ownership },
+                  { t: "Skills development", d: bbee.skills },
+                ].map((row) => (
+                  <div key={row.t}>
+                    <dt className="font-medium text-fg">{row.t}</dt>
+                    <dd className="mt-1 leading-relaxed text-muted">{row.d}</dd>
+                  </div>
+                ))}
+                <div>
+                  <dt className="font-medium text-fg">Certificate</dt>
+                  <dd className="mt-1 leading-relaxed text-muted">
+                    {bbee.certificate}:{" "}
+                    <a
+                      href={company.emailHref}
+                      className="tap text-accent underline-offset-4 hover:underline"
+                    >
+                      {company.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </section>
 

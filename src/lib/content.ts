@@ -16,6 +16,29 @@ export const company = {
   bee: "Level 2 B-BBEE contributor",
 };
 
+export const bbee = {
+  level: "Level 2",
+  status: "B-BBEE contributor",
+  /**
+   * Set by the Amended Codes of Good Practice, not a claim about CIT: a buyer
+   * counts 125% of qualifying spend with a Level 2 supplier toward their own
+   * preferential-procurement score (Level 1 is 135%, Level 4 is 100%).
+   */
+  recognition: "125%",
+  recognitionOf: "procurement recognition",
+  forBuyers:
+    "A buyer counts 125% of qualifying spend with CIT toward their own preferential-procurement scorecard, against 100% for a Level 4 supplier.",
+  ownership:
+    "CIT is a member of the Community Investment Holdings (CIH) Group, a 100% black-owned, women-led investment group.",
+  skills:
+    "Channel-partner and operator training is run as an empowerment programme, not a once-off: skills development is how both future leaders and future deployments are built.",
+  /**
+   * Certificates are re-verified annually, so the desk is the source of truth
+   * rather than a number published here that quietly goes stale.
+   */
+  certificate: "Verification certificate and current scorecard on request",
+};
+
 export const nav = [
   { to: "/about" as const, label: "About" },
   { to: "/solutions" as const, label: "Solutions" },
@@ -260,7 +283,7 @@ export const faqs = [
   },
   {
     q: "What does Level 2 B-BBEE mean for a tender?",
-    a: "Community Investment Technology is a Level 2 contributor and a member of the CIH Group. We take transformation and skills development as operating practice, not a certificate on the wall.",
+    a: "As a Level 2 contributor, 125% of what you spend with CIT counts toward your own preferential-procurement scorecard, against 100% for a Level 4 supplier. Community Investment Technology is also a member of the CIH Group, and the verification certificate is available on request.",
   },
 ];
 
