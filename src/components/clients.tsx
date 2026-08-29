@@ -29,8 +29,8 @@ export function Clients() {
             Distributed with
           </h2>
           <p className="mt-3 max-w-measure text-sm text-muted">
-            The vendor lines CIT distributes, supports and warranties across
-            Africa, specified to run as one system rather than seven.
+            The brands behind the range, distributed and supported from
+            Pretoria, and specified to run as one system rather than seven.
           </p>
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {partners.map((partner) => (
